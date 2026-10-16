@@ -1,0 +1,7 @@
+# The Ubuntu base images remain patchable through their APT repositories. Pinning
+# package versions would instead lock in stale security updates and differs across
+# the amd64 CUDA and arm64 CPU images. Application dependencies are pinned in the
+# Dockerfiles, including the Whisper model revision.
+ignored:
+  - DL3008 # APT package versions intentionally follow Ubuntu security updates.
+  - DL3013 # The builder deliberately upgrades Pip before installing pinned dependencies.

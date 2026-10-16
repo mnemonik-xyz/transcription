@@ -1,0 +1,12 @@
+line-length = 120
+target-version = "py312"
+
+[lint]
+select = ["E", "W", "F", "I", "B", "UP", "SIM", "C4", "RUF", "C90"]
+ignore = ["SIM117"]
+
+[lint.mccabe]
+max-complexity = 14
+
+[lint.per-file-ignores]
+"test_*.py" = ["B011"]
