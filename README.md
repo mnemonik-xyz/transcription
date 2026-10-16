@@ -8,9 +8,10 @@ require a bearer token, `Content-Length`, and an `X-Audio-SHA256` checksum.
 
 ## Images
 
-GitHub Actions publishes `ghcr.io/mnemonik-xyz/transcription:<tag>` for Linux amd64/CUDA and
-`ghcr.io/mnemonik-xyz/transcription:<tag>-arm64` for Linux arm64/CPU. Release tags publish
-automatically; `workflow_dispatch` can publish a named operational tag such as `pilot`.
+GitHub Actions publishes `ghcr.io/mnemonik-xyz/transcription:<tag>` as a multi-architecture
+manifest: Linux amd64 resolves to the CUDA image and Linux arm64 to the CPU image. The explicit
+variants remain available as `:<tag>-amd64` and `:<tag>-arm64`. Release tags publish automatically;
+`workflow_dispatch` can publish a named operational tag such as `pilot`.
 
 ## Local checks
 

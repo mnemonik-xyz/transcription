@@ -38,7 +38,7 @@ jobs:
           file: Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ${{ env.IMAGE }}:${{ env.TAG }}
+          tags: ${{ env.IMAGE }}:${{ env.TAG }}-amd64
           labels: org.opencontainers.image.source=https://github.com/${{ github.repository }}
       - name: Build and push CPU image for Linux arm64
         uses: docker/build-push-action@v6
@@ -49,3 +49,10 @@ jobs:
           push: true
           tags: ${{ env.IMAGE }}:${{ env.TAG }}-arm64
           labels: org.opencontainers.image.source=https://github.com/${{ github.repository }}
+      - name: Create multi-architecture image manifest
+        run: |
+          docker buildx imagetools create \
+            --tag "${IMAGE}:${TAG}" \
+            "${IMAGE}:${TAG}-amd64" \
+            "${IMAGE}:${TAG}-arm64"
+          docker buildx imagetools inspect "${IMAGE}:${TAG}"
